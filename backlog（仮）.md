@@ -177,3 +177,10 @@ Sprint 3終了時のゴール：
 | C    | Streamlit UI               | PB-01, PB-02, PB-05, PB-08, PB-14        |
 | D    | Scoring / Assignment Logic | PB-09, PB-10, PB-11, PB-12, PB-13, PB-16 |
 | E    | Dashboard / UX / QA        | PB-17, PB-18, PB-19, PB-20, PB-26, PB-27 |
+
+
+※MVPから除外
+| ID    | 内容         | 扱い                        |
+| ----- | ---------- | ------------------------- |
+| PB-07 | タスク編集・削除   | MVPから外す。時間が余ればSprint 3で追加 |
+| PB-25 | CSVからタスク入力 | MVPから外す。CSV出力より優先度が低い     |
