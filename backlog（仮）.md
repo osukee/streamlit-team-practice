@@ -1,6 +1,6 @@
 ## 📋 Product Backlog（仮の案）
 
-> ⚠️ このバックログは現在の仮の案です。チームディスカッション後、変更される可能性があります。
+> 仮の案です
 
 ### English Version
 
@@ -34,6 +34,63 @@
 | PB-26 | Testing               | As a developer, I want to test the app with realistic group work scenarios so that scoring and assignment results are reliable.                                    | High     |            3 |
 | PB-27 | Deployment            | As a user, I want to access the app through a Streamlit link so that team members can try the prototype easily.                                                    | Medium   |            5 |
 | PB-28 | Presentation          | As a developer, I want to prepare a demo scenario showing unfair assignment before and after using the app so that the app’s value is easy to understand.          | High     |            3 |
+## Sprint 1
+
+| Backlog | Description                         |
+| ------- | ----------------------------------- |
+| PB-01   | Screen transitions                  |
+| PB-02   | Project creation                    |
+| PB-03   | Member registration                 |
+| PB-05   | Task registration                   |
+| PB-08   | 1–5 point evaluation by each member |
+| PB-09   | Average score calculation           |
+| PB-21   | Score explanation                   |
+| PB-23   | Sample data                         |
+
+**Goal at the end of Sprint 1:**
+Users can register members and tasks, and calculate the average score for each task.
+
+## Sprint 2
+
+| Backlog | Description                             |
+| ------- | --------------------------------------- |
+| PB-10   | Score variance calculation              |
+| PB-11   | Perception gap alert                    |
+| PB-12   | Automatic task assignment               |
+| PB-13   | Logic for assigning heavier tasks first |
+| PB-14   | Assignment result display               |
+| PB-17   | Workload graph                          |
+| PB-18   | Task score table                        |
+| PB-19   | Workload difference display             |
+
+**Goal of Sprint 2:**
+Users can see task weight and perception gaps, and the app can automatically suggest a fair task assignment.
+
+## Sprint 3
+
+| Backlog | Description                           |
+| ------- | ------------------------------------- |
+| PB-15   | Manual adjustment                     |
+| PB-16   | Recalculation after manual adjustment |
+| PB-20   | Imbalance alert                       |
+| PB-22   | Additional score examples             |
+| PB-24   | CSV export                            |
+| PB-26   | Testing                               |
+| PB-27   | Deployment                            |
+| PB-28   | Demo scenario                         |
+
+**Goal at the end of Sprint 3:**
+In the presentation, we can demonstrate the flow from “intuitive task distribution” to “score-based evaluation by all members” to “a fair task assignment proposal.”
+
+## Role Assignment
+
+| Member | Role                           | Assigned Backlog                         |
+| ------ | ------------------------------ | ---------------------------------------- |
+| A      | Product / Scrum / Presentation | PB-02, PB-21, PB-22, PB-26, PB-28        |
+| B      | Data / Backend                 | PB-03, PB-05, PB-07, PB-23, PB-24, PB-25 |
+| C      | Streamlit UI                   | PB-01, PB-02, PB-05, PB-08, PB-14        |
+| D      | Scoring / Assignment Logic     | PB-09, PB-10, PB-11, PB-12, PB-13, PB-16 |
+| E      | Dashboard / UX / QA            | PB-17, PB-18, PB-19, PB-20, PB-26, PB-27 |
 
 
 | ID    | Epic     | User Story                                                   | Priority | Story Points |
@@ -66,3 +123,57 @@
 | PB-26 | テスト      | 開発者として、現実的なグループワークのケースでアプリをテストしたい。スコア計算と割り振りが信頼できるか確認するため。   | High     |            3 |
 | PB-27 | デプロイ     | ユーザーとして、Streamlitの公開リンクからアプリにアクセスしたい。チームメンバーが簡単に試せるようにするため。  | Medium   |            5 |
 | PB-28 | 発表準備     | 開発者として、不公平な割り振りがアプリによって改善されるデモシナリオを用意したい。アプリの価値を分かりやすく伝えるため。 | High     |            3 |
+
+Sprint 1
+| Backlog | 内容           |
+| ------- | ------------ |
+| PB-01   | 画面遷移         |
+| PB-02   | プロジェクト作成     |
+| PB-03   | メンバー登録       |
+| PB-05   | タスク登録        |
+| PB-08   | 各メンバーの1〜5点評価 |
+| PB-09   | 平均スコア計算      |
+| PB-21   | スコア説明        |
+| PB-23   | サンプルデータ      |
+
+Sprint 1終了時のゴール：
+メンバーとタスクを登録し、各タスクの平均スコアを出せる。
+
+Sprint 2
+| Backlog | 内容              |
+| ------- | --------------- |
+| PB-10   | スコアのばらつき計算      |
+| PB-11   | 認識ズレアラート        |
+| PB-12   | 自動割り振り          |
+| PB-13   | 重いタスクから割り振るロジック |
+| PB-14   | 割り振り結果表示        |
+| PB-17   | 負担グラフ           |
+| PB-18   | タスクスコア表         |
+| PB-19   | 負担差表示           |
+
+Sprint 2のゴール:
+タスクの重さと認識ズレが見え、自動で公平な割り振り案を出せる。
+
+Sprint 3
+| Backlog | 内容        |
+| ------- | --------- |
+| PB-15   | 手動調整      |
+| PB-16   | 手動調整後の再計算 |
+| PB-20   | 偏りアラート    |
+| PB-22   | スコア例の追加   |
+| PB-24   | CSV出力     |
+| PB-26   | テスト       |
+| PB-27   | デプロイ      |
+| PB-28   | デモシナリオ    |
+
+Sprint 3終了時のゴール：
+発表で「感覚的な分担 → 全員でスコア化 → 公平な割り振り案」という流れを見せられる。
+
+役割分担
+| メンバー | 役割                         | 担当Backlog                                |
+| ---- | -------------------------- | ---------------------------------------- |
+| A    | Product / Scrum / 発表       | PB-02, PB-21, PB-22, PB-26, PB-28        |
+| B    | Data / Backend             | PB-03, PB-05, PB-07, PB-23, PB-24, PB-25 |
+| C    | Streamlit UI               | PB-01, PB-02, PB-05, PB-08, PB-14        |
+| D    | Scoring / Assignment Logic | PB-09, PB-10, PB-11, PB-12, PB-13, PB-16 |
+| E    | Dashboard / UX / QA        | PB-17, PB-18, PB-19, PB-20, PB-26, PB-27 |
