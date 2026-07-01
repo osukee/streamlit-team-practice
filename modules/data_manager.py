@@ -74,3 +74,79 @@ def get_tasks(data):
     """
     return data["tasks"]
 
+# PB-23
+def get_sample_data():
+    """
+    動作確認用のサンプルデータを返す
+    """
+    return {
+        "project_name": "Presentation Project",
+
+        "members": [
+            {"id": 1, "name": "A"},
+            {"id": 2, "name": "B"},
+            {"id": 3, "name": "C"},
+            {"id": 4, "name": "D"},
+            {"id": 5, "name": "E"}
+        ],
+
+        "tasks": [
+            {
+                "id": 1,
+                "name": "Create slides",
+                "description": "Prepare the presentation slides"
+            },
+            {
+                "id": 2,
+                "name": "Research topic",
+                "description": "Collect information and references"
+            },
+            {
+                "id": 3,
+                "name": "Build Streamlit UI",
+                "description": "Create the main user interface"
+            },
+            {
+                "id": 4,
+                "name": "Implement scoring logic",
+                "description": "Calculate average task scores"
+            },
+            {
+                "id": 5,
+                "name": "Prepare demo",
+                "description": "Create a demo scenario for the final presentation"
+            }
+        ],
+
+        "scores": [
+            {"task_id": 1, "member_id": 1, "score": 3},
+            {"task_id": 1, "member_id": 2, "score": 4},
+            {"task_id": 1, "member_id": 3, "score": 3},
+            {"task_id": 1, "member_id": 4, "score": 4},
+            {"task_id": 1, "member_id": 5, "score": 3},
+
+            {"task_id": 2, "member_id": 1, "score": 4},
+            {"task_id": 2, "member_id": 2, "score": 5},
+            {"task_id": 2, "member_id": 3, "score": 4},
+            {"task_id": 2, "member_id": 4, "score": 5},
+            {"task_id": 2, "member_id": 5, "score": 4},
+
+            {"task_id": 3, "member_id": 1, "score": 5},
+            {"task_id": 3, "member_id": 2, "score": 4},
+            {"task_id": 3, "member_id": 3, "score": 5},
+            {"task_id": 3, "member_id": 4, "score": 4},
+            {"task_id": 3, "member_id": 5, "score": 5},
+
+            {"task_id": 4, "member_id": 1, "score": 4},
+            {"task_id": 4, "member_id": 2, "score": 4},
+            {"task_id": 4, "member_id": 3, "score": 3},
+            {"task_id": 4, "member_id": 4, "score": 4},
+            {"task_id": 4, "member_id": 5, "score": 3},
+
+            {"task_id": 5, "member_id": 1, "score": 2},
+            {"task_id": 5, "member_id": 2, "score": 3},
+            {"task_id": 5, "member_id": 3, "score": 2},
+            {"task_id": 5, "member_id": 4, "score": 3},
+            {"task_id": 5, "member_id": 5, "score": 2}
+        ]
+    }
