@@ -86,11 +86,11 @@ In the presentation, we can demonstrate the flow from “intuitive task distribu
 
 | Member | Role                           | Assigned Backlog                         |
 | ------ | ------------------------------ | ---------------------------------------- |
-| A      | Product / Scrum / Presentation | PB-02, PB-21, PB-22, PB-26, PB-28        |
-| B      | Data / Backend                 | PB-03, PB-05, PB-07, PB-23, PB-24, PB-25 |
-| C      | Streamlit UI                   | PB-01, PB-02, PB-05, PB-08, PB-14        |
-| D      | Scoring / Assignment Logic     | PB-09, PB-10, PB-11, PB-12, PB-13, PB-16 |
-| E      | Dashboard / UX / QA            | PB-17, PB-18, PB-19, PB-20, PB-26, PB-27 |
+| XIYUE    | Product / Scrum / presentation       | PB-02, PB-21, PB-22, PB-26, PB-28        |
+| Osuke    | Data / Backend             | PB-03, PB-05, PB-07, PB-23, PB-24, PB-25 |
+| Tongshuang| Streamlit UI               | PB-01, PB-02, PB-05, PB-08, PB-14        |
+| Shion    | Scoring / Assignment Logic | PB-09, PB-10, PB-11, PB-12, PB-13, PB-16 |
+| Rana     | Dashboard / UX / QA        | PB-17, PB-18, PB-19, PB-20, PB-26, PB-27 |
 
 
 | ID    | Epic     | User Story                                                   | Priority | Story Points |
@@ -172,11 +172,11 @@ Sprint 3終了時のゴール：
 役割分担
 | メンバー | 役割                         | 担当Backlog                                |
 | ---- | -------------------------- | ---------------------------------------- |
-| A    | Product / Scrum / 発表       | PB-02, PB-21, PB-22, PB-26, PB-28        |
-| B    | Data / Backend             | PB-03, PB-05, PB-07, PB-23, PB-24, PB-25 |
-| C    | Streamlit UI               | PB-01, PB-02, PB-05, PB-08, PB-14        |
-| D    | Scoring / Assignment Logic | PB-09, PB-10, PB-11, PB-12, PB-13, PB-16 |
-| E    | Dashboard / UX / QA        | PB-17, PB-18, PB-19, PB-20, PB-26, PB-27 |
+| XIYUE    | Product / Scrum / 発表       | PB-02, PB-21, PB-22, PB-26, PB-28        |
+| Osuke    | Data / Backend             | PB-03, PB-05, PB-07, PB-23, PB-24, PB-25 |
+| Tongshuang| Streamlit UI               | PB-01, PB-02, PB-05, PB-08, PB-14        |
+| Shion    | Scoring / Assignment Logic | PB-09, PB-10, PB-11, PB-12, PB-13, PB-16 |
+| Rana     | Dashboard / UX / QA        | PB-17, PB-18, PB-19, PB-20, PB-26, PB-27 |
 
 
 ※MVPから除外
@@ -184,3 +184,4 @@ Sprint 3終了時のゴール：
 | ----- | ---------- | ------------------------- |
 | PB-07 | タスク編集・削除   | MVPから外す。時間が余ればSprint 3で追加 |
 | PB-25 | CSVからタスク入力 | MVPから外す。CSV出力より優先度が低い     |
+
