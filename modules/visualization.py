@@ -2,9 +2,9 @@
 """
 グラフ・可視化機能を管理するモジュール
 """
-
 import streamlit as st
 import pandas as pd
+import time
 
 # ---------------------------------
 # Page Setting
@@ -16,13 +16,51 @@ st.set_page_config(
 )
 
 # ---------------------------------
+# Welcome Toast
+# ---------------------------------
+st.toast("🌸 Welcome to FairTask!")
+
+# ---------------------------------
+# Cute CSS
+# ---------------------------------
+st.markdown("""
+<style>
+
+.main {
+    background-color: #FFF9FC;
+}
+
+h1 {
+    color: #FF69B4;
+}
+
+[data-testid="stMetric"] {
+    background-color: #FFF0F5;
+    padding: 15px;
+    border-radius: 15px;
+    border: 2px solid #FFD6E7;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+# ---------------------------------
+# Loading Animation
+# ---------------------------------
+with st.spinner("Loading Dashboard..."):
+    time.sleep(1)
+
+# ---------------------------------
 # Title
 # ---------------------------------
 st.title("🌸 FairTask Dashboard")
 st.caption("Making Group Work Fair and Balanced")
 
 st.markdown("### ✨ Dashboard Summary")
-st.write("This dashboard helps teams visualize workload balance and identify tasks that need discussion.")
+st.write(
+    "This dashboard helps teams visualize workload balance "
+    "and identify tasks that need discussion."
+)
 
 st.divider()
 
@@ -66,6 +104,7 @@ with col3:
 
 if fairness >= 90:
     st.success("🎉 Excellent! Everyone's workload is very balanced.")
+    st.balloons()
 
 elif fairness >= 75:
     st.warning("😊 Good! The workload is almost balanced.")
@@ -81,7 +120,6 @@ st.divider()
 
 st.markdown("### 📈 Team Overview")
 
-# Highest workload
 highest = workload.loc[workload["Workload"].idxmax()]
 
 st.info(
@@ -128,17 +166,29 @@ else:
         st.warning(
             f"**{row['Task']}**\n\n"
             f"Variance: **{row['Variance']}**\n\n"
-            "Members have different opinions. Please discuss before assigning this task."
+            "Members have different opinions. "
+            "Please discuss before assigning this task."
         )
 
 st.divider()
 
 # ---------------------------------
-# Assistant
+# FairTask Assistant
 # ---------------------------------
 
 st.subheader("🤖 FairTask Assistant")
 
 st.success("🎉 Great! This dashboard currently uses sample data.")
 
-st.info("CSV integration will be added in Sprint 2.")
+st.info("📁 CSV integration will be added in Sprint 2.")
+
+st.divider()
+
+# ---------------------------------
+# Celebrate
+# ---------------------------------
+
+st.markdown("### 🎉 Celebrate!")
+
+if st.button("❄ Celebrate Teamwork"):
+    st.snow()
