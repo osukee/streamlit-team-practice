@@ -86,9 +86,9 @@ In the presentation, we can demonstrate the flow from “intuitive task distribu
 
 | Member | Role                           | Assigned Backlog                         |
 | ------ | ------------------------------ | ---------------------------------------- |
-| XIYUE    | Product / Scrum / presentation       | PB-02, PB-21, PB-22, PB-26, PB-28        |
+| Tongshuang| Product / Scrum / presentation       | PB-02, PB-21, PB-22, PB-26, PB-28        |
 | Osuke    | Data / Backend             | PB-03, PB-05, PB-07, PB-23, PB-24, PB-25 |
-| Tongshuang| Streamlit UI               | PB-01, PB-02, PB-05, PB-08, PB-14        |
+| XIYUE    | Streamlit UI               | PB-01, PB-02, PB-05, PB-08, PB-14        |
 | Shion    | Scoring / Assignment Logic | PB-09, PB-10, PB-11, PB-12, PB-13, PB-16 |
 | Rana     | Dashboard / UX / QA        | PB-17, PB-18, PB-19, PB-20, PB-26, PB-27 |
 
@@ -172,9 +172,9 @@ Sprint 3終了時のゴール：
 役割分担
 | メンバー | 役割                         | 担当Backlog                                |
 | ---- | -------------------------- | ---------------------------------------- |
-| XIYUE    | Product / Scrum / 発表       | PB-02, PB-21, PB-22, PB-26, PB-28        |
+| Tongshuang| Product / Scrum / 発表       | PB-02, PB-21, PB-22, PB-26, PB-28        |
 | Osuke    | Data / Backend             | PB-03, PB-05, PB-07, PB-23, PB-24, PB-25 |
-| Tongshuang| Streamlit UI               | PB-01, PB-02, PB-05, PB-08, PB-14        |
+| XIYUE| Streamlit UI               | PB-01, PB-02, PB-05, PB-08, PB-14        |
 | Shion    | Scoring / Assignment Logic | PB-09, PB-10, PB-11, PB-12, PB-13, PB-16 |
 | Rana     | Dashboard / UX / QA        | PB-17, PB-18, PB-19, PB-20, PB-26, PB-27 |
 
