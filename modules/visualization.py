@@ -183,12 +183,3 @@ st.success("🎉 Great! This dashboard currently uses sample data.")
 st.info("📁 CSV integration will be added in Sprint 2.")
 
 st.divider()
-
-# ---------------------------------
-# Celebrate
-# ---------------------------------
-
-st.markdown("### 🎉 Celebrate!")
-
-if st.button("❄ Celebrate Teamwork"):
-    st.snow()
