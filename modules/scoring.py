@@ -2,6 +2,8 @@
 """
 スコア計算（平均・ばらつき等）機能を管理するモジュール
 """
+import statistics
+
 
 def calculate_average_scores(data):
     """
@@ -24,9 +26,17 @@ def calculate_average_scores(data):
 
         average = sum(task_scores) / len(task_scores)
 
+        if len(task_scores) > 1:
+            disagreement = statistics.stdev(task_scores)
+
+        else:
+            disagreement = 0
+
+
         results.append({
                     "task_id": task_id,
-                    "average": average
+                    "average": average,
+                    "disagreement": disagreement
         })
 
     return results
