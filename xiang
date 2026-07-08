@@ -1,1 +1,80 @@
+"""
+共有データモデル - グループ課題タスク分配アプリ
 
+チーム全体で使う session_state のスキーマをここに定義しています。
+新しい機能（メンバー登録・タスク登録・スコア付け・自動割り振り等）を
+追加するときは、このファイルの構造に合わせてください。
+勝手に別のキー名や構造を作ると、他のページと繋がらなくなるので注意。
+
+各ページ（.py ファイル）の一番上で、必ず init_session_state() を呼び出すこと。
+"""
+
+from dataclasses import dataclass, field
+from datetime import datetime
+from typing import Optional
+import streamlit as st
+
+
+# ---------------------------------------------------------------------------
+# データクラス
+# ---------------------------------------------------------------------------
+
+@dataclass
+class Project:
+    """プロジェクト（グループワーク単位）。PB-02 で作成する。"""
+    name: str
+    description: str = ""
+    created_at: str = field(default_factory=lambda: datetime.now().strftime("%Y-%m-%d %H:%M"))
+
+
+@dataclass
+class Member:
+    """グループメンバー。PB-03 で登録、PB-04 で working_hours を追加予定。"""
+    id: str
+    name: str
+    available_hours: Optional[float] = None  # PB-04（任意項目）
+
+
+@dataclass
+class Task:
+    """タスク。PB-05 で登録、PB-06 で category を追加予定。"""
+    id: str
+    title: str
+    category: Optional[str] = None  # PB-06（任意項目）
+
+
+# ---------------------------------------------------------------------------
+# session_state の初期化・共通操作
+# ---------------------------------------------------------------------------
+
+# session_state に持たせるキーとその初期値。
+# 他のPBを実装する人は、ここに新しいキーを足すのではなく、
+# まずチームに相談してから追加してください（構造がバラバラになるのを防ぐため）。
+_DEFAULTS = {
+    "project": None,     # Project | None                          -> PB-02
+    "members": [],       # list[Member]                            -> PB-03
+    "tasks": [],         # list[Task]                               -> PB-05
+    "scores": {},        # dict[task_id, dict[member_id, int]]      -> PB-08
+    "assignment": {},    # dict[member_id, list[task_id]]           -> PB-12
+}
+
+
+def init_session_state() -> None:
+    """アプリ全体で使う session_state を初期化する。各ページの先頭で必ず呼ぶこと。"""
+    for key, default_value in _DEFAULTS.items():
+        if key not in st.session_state:
+            # dict/list はミュータブルなので、毎回コピーして入れる
+            st.session_state[key] = default_value.copy() if isinstance(default_value, (dict, list)) else default_value
+
+
+def has_project() -> bool:
+    """プロジェクトが作成済みかどうか。他のページで『先にプロジェクトを作ってください』
+    という誘導を出すときに使う。"""
+    return st.session_state.get("project") is not None
+
+
+def reset_project() -> None:
+    """プロジェクトと関連データ（メンバー・タスク・スコア・割り振り結果）をすべて削除する。"""
+    for key, default_value in _DEFAULTS.items():
+        st.session_state[key] = default_value.copy() if isinstance(default_value, (dict, list)) else default_value
+# Sarah test
