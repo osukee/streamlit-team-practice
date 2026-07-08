@@ -3,13 +3,26 @@ from datetime import date
 import pandas as pd
 import streamlit as st
 
+from modules.data_manager import get_sample_data
+
 
 PAGES = [
     "Project Setup",
+    "Member Setup",
     "Task Brainstorming",
     "Task Scoring",
     "Assignment Result",
     "Dashboard",
+    "Sample Data",
+]
+
+CATEGORIES = [
+    "Planning",
+    "Development",
+    "Design",
+    "Research",
+    "Presentation",
+    "Documentation",
 ]
 
 
@@ -61,6 +74,74 @@ def member_names_from_text(raw_names):
             seen.add(clean_name.lower())
 
     return names
+
+
+def add_member(member_name):
+    clean_name = member_name.strip()
+
+    if not clean_name:
+        return False, "Member name is required."
+
+    existing_names = {member.lower() for member in st.session_state.members}
+    if clean_name.lower() in existing_names:
+        return False, "This member already exists."
+
+    st.session_state.members.append(clean_name)
+    st.session_state.assignments = {}
+    return True, f"Added member: {clean_name}"
+
+
+def remove_member(member_name):
+    st.session_state.members = [
+        member
+        for member in st.session_state.members
+        if member != member_name
+    ]
+
+    for task_scores in st.session_state.scores.values():
+        task_scores.pop(member_name, None)
+
+    st.session_state.assignments = {}
+
+
+def load_sample_data():
+    sample = get_sample_data()
+    members_by_id = {
+        member["id"]: member["name"]
+        for member in sample["members"]
+    }
+
+    st.session_state.project = {
+        "name": sample.get("project_name", "Sample Project"),
+        "description": "Sample group work data loaded from PB-23.",
+        "deadline": date.today().isoformat(),
+    }
+    st.session_state.members = list(members_by_id.values())
+    st.session_state.tasks = [
+        {
+            "id": task["id"],
+            "name": task["name"],
+            "category": task.get("category", "Planning"),
+            "description": task.get("description", ""),
+        }
+        for task in sample["tasks"]
+    ]
+    st.session_state.next_task_id = (
+        max(task["id"] for task in st.session_state.tasks) + 1
+        if st.session_state.tasks
+        else 1
+    )
+
+    scores = {}
+    for score in sample["scores"]:
+        member_name = members_by_id.get(score["member_id"])
+        if member_name is None:
+            continue
+
+        scores.setdefault(score["task_id"], {})[member_name] = score["score"]
+
+    st.session_state.scores = scores
+    st.session_state.assignments = {}
 
 
 def get_task(task_id):
@@ -176,29 +257,18 @@ def show_project_setup():
             value=project["description"],
         )
         deadline = st.date_input("Deadline", value=saved_deadline)
-        member_input = st.text_input(
-            "Team Members",
-            value=", ".join(st.session_state.members),
-            help="Separate member names with commas.",
-        )
 
         submitted = st.form_submit_button("Save Project")
 
     if submitted:
-        members = member_names_from_text(member_input)
-
         if not project_name.strip():
             st.error("Project name is required.")
-        elif not members:
-            st.error("Add at least one team member.")
         else:
             st.session_state.project = {
                 "name": project_name.strip(),
                 "description": project_description.strip(),
                 "deadline": deadline.isoformat(),
             }
-            st.session_state.members = members
-            st.session_state.assignments = {}
             st.success("Project saved.")
 
     st.subheader("Project Summary")
@@ -208,6 +278,41 @@ def show_project_setup():
         "Members": ", ".join(st.session_state.members),
     }
     st.dataframe(pd.DataFrame([summary]), use_container_width=True, hide_index=True)
+    st.info("Add or update team members on the Member Setup page.")
+
+
+def show_member_setup():
+    st.title("Member Setup")
+    st.caption("PB-03: Add group members for scoring and assignment.")
+
+    with st.form("member_form", clear_on_submit=True):
+        member_name = st.text_input("Member Name")
+        submitted = st.form_submit_button("Add Member")
+
+    if submitted:
+        ok, message = add_member(member_name)
+        if ok:
+            st.success(message)
+        else:
+            st.error(message)
+
+    st.subheader("Current Members")
+
+    if not st.session_state.members:
+        st.info("No members have been added yet.")
+        return
+
+    for member in st.session_state.members:
+        name_col, action_col = st.columns([4, 1])
+        name_col.write(member)
+
+        if action_col.button("Remove", key=f"remove_member_{member}"):
+            if len(st.session_state.members) == 1:
+                st.error("At least one member is required.")
+            else:
+                remove_member(member)
+                st.success(f"Removed member: {member}")
+                st.rerun()
 
 
 def show_task_brainstorming():
@@ -218,14 +323,7 @@ def show_task_brainstorming():
         task_name = st.text_input("Task Name")
         category = st.selectbox(
             "Category",
-            [
-                "Planning",
-                "Development",
-                "Design",
-                "Research",
-                "Presentation",
-                "Documentation",
-            ],
+            CATEGORIES,
         )
         description = st.text_area("Description")
         submitted = st.form_submit_button("Add Task")
@@ -381,6 +479,34 @@ def show_dashboard():
         st.info("Open Assignment Result to generate an assignment preview.")
 
 
+def show_sample_data():
+    st.title("Sample Data")
+    st.caption("PB-23: Load sample group work data without entering everything manually.")
+
+    st.write(
+        "Loading sample data replaces the current project, members, tasks, scores, "
+        "and assignment preview in this session."
+    )
+
+    if st.button("Load Sample Data"):
+        load_sample_data()
+        st.success("Sample data loaded.")
+
+    sample = get_sample_data()
+
+    st.subheader("Sample Preview")
+    st.write(f"Project: {sample['project_name']}")
+
+    st.write("Members")
+    st.dataframe(pd.DataFrame(sample["members"]), use_container_width=True, hide_index=True)
+
+    st.write("Tasks")
+    st.dataframe(pd.DataFrame(sample["tasks"]), use_container_width=True, hide_index=True)
+
+    st.write("Scores")
+    st.dataframe(pd.DataFrame(sample["scores"]), use_container_width=True, hide_index=True)
+
+
 st.set_page_config(
     page_title="SprintMate",
     layout="wide",
@@ -391,6 +517,8 @@ selected_page = show_sidebar()
 
 if selected_page == "Project Setup":
     show_project_setup()
+elif selected_page == "Member Setup":
+    show_member_setup()
 elif selected_page == "Task Brainstorming":
     show_task_brainstorming()
 elif selected_page == "Task Scoring":
@@ -399,3 +527,5 @@ elif selected_page == "Assignment Result":
     show_assignment_result()
 elif selected_page == "Dashboard":
     show_dashboard()
+elif selected_page == "Sample Data":
+    show_sample_data()
