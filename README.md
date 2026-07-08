@@ -18,6 +18,9 @@ streamlit-team-practice/
 └── requirements.txt
 └──team.md
 
+### チームのGitHubレポジトリと同期するために（毎作業前にするとよい）
+git pull origin main
+
 ## How to Create a Branch （ブランチの作り方）
 ### Branches are created at the Backlog level, not at the individual person level.
 命名例:
