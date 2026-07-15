@@ -13,6 +13,12 @@ def assign_tasks(data):
 
     task_scores = calculate_average_scores(data)
 
+    # 平均スコアが高いタスクから並べる（PB13）
+    task_scores.sort(
+        key=lambda x: x["average"],
+        reverse=True
+    )
+
     # メンバーごとの現在の負担
     workloads = {}
 
