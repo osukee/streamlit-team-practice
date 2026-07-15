@@ -32,11 +32,17 @@ def calculate_average_scores(data):
         else:
             disagreement = 0
 
+        if disagreement >= 1.5:
+            warning = True
+        else:
+            warning = False
+
 
         results.append({
                     "task_id": task_id,
                     "average": average,
-                    "disagreement": disagreement
+                    "disagreement": disagreement,
+                    "warning": warning
         })
 
     return results
