@@ -3,6 +3,7 @@ from datetime import date
 import pandas as pd
 import streamlit as st
 
+from modules.visualization2 import render_dashboard
 
 PAGES = [
     "Project Setup",
@@ -355,30 +356,12 @@ def show_assignment_result():
 
 
 def show_dashboard():
-    st.title("Dashboard")
-    st.caption("PB-01: Navigation includes the main dashboard view.")
-
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Members", len(st.session_state.members))
-    col2.metric("Tasks", len(st.session_state.tasks))
-
-    scored_tasks = sum(
-        1
-        for task in st.session_state.tasks
-        if task_score_status(task["id"])[0] == task_score_status(task["id"])[1]
+    render_dashboard(
+        st.session_state.tasks,
+        st.session_state.members,
+        st.session_state.scores,
+        st.session_state.assignments,
     )
-    col3.metric("Fully Scored Tasks", scored_tasks)
-
-    if st.session_state.tasks:
-        st.subheader("Task Scores")
-        st.dataframe(score_table(), use_container_width=True, hide_index=True)
-
-    if st.session_state.assignments:
-        st.subheader("Workload")
-        workload = workload_rows()
-        st.bar_chart(workload.set_index("Member")["Workload Score"])
-    else:
-        st.info("Open Assignment Result to generate an assignment preview.")
 
 
 st.set_page_config(
