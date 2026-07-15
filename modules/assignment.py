@@ -41,3 +41,34 @@ def assign_tasks(data):
         workloads[member_id] += task["average"]
 
     return assignments
+
+def manual_assign_task(assignments, task_id, new_member_id):
+    """
+    Manually change the assigned member of a task.
+    """
+
+    for assignment in assignments:
+        if assignment["task_id"] == task_id:
+            assignment["member_id"] = new_member_id
+            break
+
+    return assignments
+
+def calculate_workloads(assignments):
+    """
+    Calculate total workload score for each member.
+    """
+
+    workloads = {}
+
+    for assignment in assignments:
+
+        member_id = assignment["member_id"]
+        score = assignment["score"]
+
+        if member_id not in workloads:
+            workloads[member_id] = 0
+
+        workloads[member_id] += score
+
+    return workloads
