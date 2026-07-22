@@ -54,6 +54,48 @@ def manual_assign_task(assignments, task_id, new_member_id):
 
     return assignments
 
+
+def delete_assignment(assignments, task_id):
+    """
+    Delete an assigned task.
+    """
+
+    assignments = [
+        assignment
+        for assignment in assignments
+        if assignment["task_id"] != task_id
+    ]
+
+    return assignments
+
+
+def add_assignment(assignments, task_id, member_id, score):
+    """
+    Add a new task assignment.
+    """
+
+    assignments.append({
+        "task_id": task_id,
+        "member_id": member_id,
+        "score": score
+    })
+
+    return assignments
+
+
+def update_assignment_score(assignments, task_id, new_score):
+    """
+    Update the score of an assigned task.
+    """
+
+    for assignment in assignments:
+        if assignment["task_id"] == task_id:
+            assignment["score"] = new_score
+            break
+
+    return assignments
+
+
 def calculate_workloads(assignments):
     """
     Calculate total workload score for each member.
